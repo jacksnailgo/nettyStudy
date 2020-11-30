@@ -8,7 +8,6 @@ package main.com.jackie.algorithm;
  * 作者：力扣 (LeetCode)
  * 链接：https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2gy9m/
  * 来源：力扣（LeetCode）
- * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  */
 public class DeleteRepeatArray {
     public static void main(String[] args) {
@@ -21,7 +20,8 @@ public class DeleteRepeatArray {
 
     /**
      *  [0,0,1,1,1,2,2,3,3,4]  [1,1,2]
-     *  算法过程：
+     *  算法过程：双指针
+     *  快指针比慢指针快一步，当快指针指向了不同的元素，则把他添加到慢指针上
      * @param nums
      * @return
      */
@@ -29,19 +29,16 @@ public class DeleteRepeatArray {
         if(nums.length == 0){
             return 0;
         }
-        int result = 0;
-        int removeTimes = 0;
-        //考虑数组只有1个数字的情况
-        int duplicate = nums[0];
-        for(int i = 1;i<nums.length ; i++){
-           if(duplicate == nums[i]){
-               for(int j=i;j< nums.length; j++){
-                   nums[i-1] = nums[j];
-               }
-               removeTimes ++;
-           }
-            duplicate = nums[i];
+        int fast = 1;
+        int slow = 0;
+        while(fast < nums.length){
+            if(nums[fast] == nums[slow]){
+                fast ++;
+            } else {
+                nums[++ slow ] = nums[fast];
+            }
         }
-        return nums.length - removeTimes;
+
+        return slow ;
     }
 }

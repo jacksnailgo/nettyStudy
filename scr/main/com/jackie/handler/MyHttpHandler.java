@@ -9,9 +9,9 @@ import io.netty.handler.codec.http.HttpRequest;
 @ChannelHandler.Sharable
 public class MyHttpHandler extends SimpleChannelInboundHandler<HttpRequest> {
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, HttpRequest httpRequest) throws Exception {
-        System.out.println("request:" + httpRequest.uri());
-        String uri = httpRequest.uri();//  解析URI ， 得到Http里面的所有参数
+    protected void channelRead0(ChannelHandlerContext ctx, HttpRequest msg) throws Exception {
+        System.out.println("request:" + msg.uri()+"," + msg.method().name());
+        String uri = msg.uri();//  解析URI ， 得到Http里面的所有参数
         if ("/favicon.ico".equals(uri)) {
             ctx.close();
             return;
