@@ -16,6 +16,9 @@ public class DeleteRepeatArray {
          int result ;
          result = removeDuplicates(array);
         System.out.println(result);
+        for(int i =0;i<array.length;i++){
+            System.out.println(array[i]);
+        }
     }
 
     /**
@@ -39,6 +42,6 @@ public class DeleteRepeatArray {
             }
         }
 
-        return slow ;
+        return slow+1 ;
     }
 }
