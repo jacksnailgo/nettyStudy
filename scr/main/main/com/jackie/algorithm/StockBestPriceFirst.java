@@ -1,4 +1,4 @@
-package main.main.com.jackie.algorithm;
+package main.com.jackie.algorithm;
 
 /**
  * 买卖股票的最佳时机 II
