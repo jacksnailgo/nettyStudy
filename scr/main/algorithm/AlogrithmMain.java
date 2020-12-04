@@ -1,4 +1,4 @@
-package main.com.jackie.algorithm;
+package algorithm;
 
 public class AlogrithmMain {
     public static void main(String[] args) {

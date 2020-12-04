@@ -1,4 +1,4 @@
-package main.com.jackie.algorithm;
+package algorithm;
 
 import java.util.Arrays;
 import java.util.HashSet;
