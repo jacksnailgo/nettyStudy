@@ -11,18 +11,24 @@ public class AsyncDBEntity {
     private AtomicReferenceFieldUpdater<AsyncDBEntity, AsyncDBState> fieldUpdater =
             AtomicReferenceFieldUpdater.newUpdater(AsyncDBEntity.class, AsyncDBState.class, "currentState");
     /**
-     * 对某个类中，被volatile修饰的字段进行原子更新
+     * 对某个类，被volatile修饰的字段进行原子更新
      */
     volatile AsyncDBState currentState = AsyncDBState.NORMAL;
 
-    private Updater updater;   //他是如何被初始化的呢？  通过Dao
+    private Updater updater;   //执行操作的Dao一定不能为空，否则无法执行
 
     private SyncQueue syncQueue;
 
+    /**
+     * 提交操作，更新entity的状态
+     * operation 可能是 update,insert,delete
+     * 更新操作，如果当前状态Normal，那么可以update可以替换normal
+     * @param operation
+     * @return
+     */
     public boolean submit(DBOperation operation) {
         AsyncDBState state = currentState;
-        for(;;) {
-            //operation 可能是 update,insert,delete    举例：operation为Update，当前状态Normal，那么可以update可以替换Normal
+        for (; ; ) {
             if (operation.canChangeAt(state)) {
                 if (operation.canReplaceAt(state)) {
                     //更新当前状态
@@ -38,7 +44,8 @@ public class AsyncDBEntity {
     }
 
     /**
-     * 这个方法的作用是啥？？？
+     * 尝试重复操作，直到我们的状态能够通过Dao将entity同步到数据库中
+     *
      * @param tryTimes
      * @return
      */

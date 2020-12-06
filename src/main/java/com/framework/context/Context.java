@@ -1,6 +1,7 @@
 package com.framework.context;
 
 import com.framework.async.AsyncDBService;
+import com.framework.cache.CacheEntityService;
 import com.logic.player.PlayerService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class Context implements ApplicationContextAware {
     private static PlayerService playerService;
 
     private static AsyncDBService asyncDBService;
+
+    private static CacheEntityService cacheEntityService;
 
     public static <T> T getBeans(Class<T> tclass ){
         return applicationContext.getBean(tclass);
@@ -40,5 +43,13 @@ public class Context implements ApplicationContextAware {
     @Autowired
     public void setAsyncDBService(AsyncDBService asyncDBService) {
         Context.asyncDBService = asyncDBService;
+    }
+
+    public static CacheEntityService getCacheEntityService() {
+        return cacheEntityService;
+    }
+    @Autowired
+    public  void setCacheEntityService(CacheEntityService cacheEntityService) {
+        Context.cacheEntityService = cacheEntityService;
     }
 }

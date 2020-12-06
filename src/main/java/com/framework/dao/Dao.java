@@ -8,5 +8,5 @@ import java.lang.annotation.*;
 public @interface Dao {
     public boolean sync() default true;
 
-    Class<? extends Updater> update();
+    Class<? extends Updater> daoClass();
 }

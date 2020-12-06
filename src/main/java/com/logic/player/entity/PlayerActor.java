@@ -1,6 +1,7 @@
 package com.logic.player.entity;
 
 import com.framework.async.entity.BaseEntity;
+import com.framework.cache.CacheSearch;
 import com.framework.dao.Dao;
 import com.logic.player.dao.PlayerDao;
 
@@ -11,9 +12,12 @@ import java.util.Map;
 
 @Entity(name = "PlayerActor")
 @Table
-@Dao(update = PlayerDao.class)
+@Dao(daoClass = PlayerDao.class)
+@CacheSearch
 public class PlayerActor extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
 
     private long playerId;

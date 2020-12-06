@@ -6,6 +6,5 @@ import org.springframework.stereotype.Component;
 public class DeafultExceptionCallBack implements ExceptionCallBack {
     @Override
     public void onException(Exception e) {
-
     }
 }

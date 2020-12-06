@@ -1,21 +1,22 @@
 package com.framework.async.entity;
 
+import com.framework.cache.CacheUpdater;
 import com.framework.context.Context;
 
 import java.io.Serializable;
 
 
-public class BaseEntity extends AsyncDBEntity implements  Serializable {
+public class BaseEntity extends AsyncDBEntity implements  Serializable, CacheUpdater<BaseEntity> {
 
     public void update(){
-        Context.getAsyncDBService().update(this);
+        updateCache();
     }
     public void insert(){
-        Context.getAsyncDBService().insert(this);
+        addToCache();
     }
 
     public void delete(){
-        Context.getAsyncDBService().delete(this);
+        deleteFromCache();
     }
 
     public void serialize(){
@@ -32,4 +33,18 @@ public class BaseEntity extends AsyncDBEntity implements  Serializable {
     }
 
 
+    @Override
+    public void updateCache() {
+        Context.getCacheEntityService().updateCache(this);
+    }
+
+    @Override
+    public void addToCache() {
+        Context.getCacheEntityService().addToCache(this);
+    }
+
+    @Override
+    public void deleteFromCache() {
+        Context.getCacheEntityService().deleteFromCache(this);
+    }
 }

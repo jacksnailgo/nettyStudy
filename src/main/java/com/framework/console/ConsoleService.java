@@ -16,9 +16,9 @@ public class ConsoleService implements IConsoleService{
         System.out.println("hello World");
         //测试一下入库的操作
         PlayerActor playerActor = new PlayerActor();
-        playerActor.setPlayerId(111);
-        playerActor.setAccount("jackie1");
-        playerActor.setCopper(9999999);
+        playerActor.setPlayerId(1005);
+        playerActor.setAccount("jackie");
+        playerActor.setCopper(101);
         playerActor.insert();
         /*if(DBOperation.INSERT.canOperation(AsyncDBState.INSERT)){
             System.out.println(true);
@@ -27,7 +27,7 @@ public class ConsoleService implements IConsoleService{
     @Console(method = "test2",desc = "测试方法2")
     public void test2(){
         PlayerDao beans = Context.getBeans(PlayerDao.class);
-        PlayerActor playerActor = beans.getBy(0);
+        PlayerActor playerActor = beans.getBy(1L);
         System.out.println(playerActor);
 
     }

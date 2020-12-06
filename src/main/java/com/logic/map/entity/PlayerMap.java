@@ -1,5 +1,7 @@
 package com.logic.map.entity;
 
+import com.framework.async.entity.BaseEntity;
+import com.framework.cache.CacheSearch;
 import com.framework.dao.Dao;
 import com.logic.map.entity.dao.PlayerMapDao;
 
@@ -9,8 +11,9 @@ import java.util.Map;
 
 @Table
 @Entity(name = "PlayerMap")
-@Dao(sync = true,update = PlayerMapDao.class)
-public class PlayerMap {
+@Dao(sync = true,daoClass = PlayerMapDao.class)
+@CacheSearch
+public class PlayerMap extends BaseEntity {
     @Id
     private long id;
 

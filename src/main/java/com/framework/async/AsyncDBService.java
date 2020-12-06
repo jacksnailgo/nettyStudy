@@ -33,14 +33,22 @@ public class AsyncDBService implements ApplicationContextAware, ServerStarter, S
      */
     @Autowired
     private ISyncStrategy syncStrategy;
-    @Autowired
+
     private ExceptionCallBack exceptionCallBack;
+
+    public ExceptionCallBack getExceptionCallBack() {
+        return exceptionCallBack;
+    }
+    @Autowired
+    public void setExceptionCallBack(ExceptionCallBack exceptionCallBack) {
+        this.exceptionCallBack = exceptionCallBack;
+    }
 
     private SyncQueuePool syncQueuePool;
 
     @PostConstruct
     public void init() {
-        this.syncQueuePool = new SyncQueuePool(threads, new SimpleThreadFactory(), syncStrategy, exceptionCallBack);
+        this.syncQueuePool = new SyncQueuePool(threads, new SimpleThreadFactory("syncThreadGroup"), syncStrategy, exceptionCallBack);
     }
 
     @Override
@@ -63,7 +71,7 @@ public class AsyncDBService implements ApplicationContextAware, ServerStarter, S
                 根据entity的Updater，找到Dao,然后调用Hibernate进行入库*/
                 Class<? extends AsyncDBEntity> aClass = entity.getClass();
                 Dao annotation = aClass.getAnnotation(Dao.class);
-                Updater updater = updaterMap.get(annotation.update());
+                Updater updater = updaterMap.get(annotation.daoClass());
                 if(updater == null){
                     System.err.println(entity +"没有@Dao或者Dao中未包含指定Dao");
                     return false;
