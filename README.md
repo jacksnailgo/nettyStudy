@@ -1,5 +1,12 @@
 # nettyStudy
 for netty Learning
+12.20
+所有从数据库加载的数据，都应该放在自己的缓存中，这样我们的CRUD不会因为IO而占用太久的时间。
+可以对每一个数据库的实体，进行Cache化。  
+我们用@CacheSearch 来表示每个数据库实体的 缓存层，  实际上也可以通过Guava的Cache来全局管理Cache。
+我们采用第二种方式，cache<Key,Entity>来管理  ,key为IndexId,也就是PlayerId.  Entity为我们的每个数据实体类
+
+
 12.7的计划
 方向：
 数据库已经连接正常， 数据库的缓存组件，入库和取数据之间添加缓存层，考虑使用Redis或者自己构建缓存层。
