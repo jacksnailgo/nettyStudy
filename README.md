@@ -1,26 +1,27 @@
 # nettyStudy
 for netty Learning
-12.20
+
+#12.20
 所有从数据库加载的数据，都应该放在自己的缓存中，这样我们的CRUD不会因为IO而占用太久的时间。
 可以对每一个数据库的实体，进行Cache化。  
 我们用@CacheSearch 来表示每个数据库实体的 缓存层，  实际上也可以通过Guava的Cache来全局管理Cache。
 我们采用第二种方式，cache<Key,Entity>来管理  ,key为IndexId,也就是PlayerId.  Entity为我们的每个数据实体类
 
 
-12.7的计划
+#12.7的计划
 方向：
 数据库已经连接正常， 数据库的缓存组件，入库和取数据之间添加缓存层，考虑使用Redis或者自己构建缓存层。
 划分，缓存实体CacheEntity,那么我们的update操作，都是先对缓存进行更新了。
 
 
-12.6思路
+#12.6思路
 构建项目整体框架，内容包括：netty\net传输\文件配置加载\本地测试\数据库连接\Dao异步框架
 1.添加同时整理POM文件，整合Hibernate,Spring,成功连接远程数据库。
 2.实现异步同步数据库流程，多线程同步数据入库的操作。
 3.控制台输入内容测试方法，代替Junit单元测试。
 
 
-11.25思路
+#11.25思路
   处理将前端的URL信息解析方法名和参数，组装成一个AddressPoster ,里面包含方法名和地址.
 游戏项目中，我们都是通过检索@PacketHandlers的类，得到每个类中的Packet，然后得到一个Map<每个Packet,包装类>
 这个包装类包含了方法和@PacketHandler的类。   所以我们通过客户端获得这个Packet之后，我们就能检索得到调用他方法的service，method。
