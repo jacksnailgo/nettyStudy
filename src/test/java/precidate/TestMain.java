@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * lambda表达式的初级应用
+ */
 public class TestMain {
     /**
      * 使用实现类的方式过滤
@@ -63,5 +66,7 @@ public class TestMain {
         }
         return result;
     }
+
+
 
 }
