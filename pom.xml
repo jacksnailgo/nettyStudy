@@ -19,6 +19,13 @@
     </properties>
 
     <dependencies>
+        <!--  一个Bean的映射工具，用于对象的复制， 类比于Beanutils -->
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>

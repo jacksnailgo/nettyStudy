@@ -36,6 +36,9 @@ public class PlayerActor extends BaseEntity {
     @Transient
     private Map<Integer,Integer> goodsMap = new HashMap<>();
 
+    public PlayerActor() {
+    }
+
     public long getId() {
         return id;
     }

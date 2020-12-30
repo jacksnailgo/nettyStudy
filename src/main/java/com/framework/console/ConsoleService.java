@@ -6,6 +6,7 @@ import com.framework.context.Context;
 import com.google.common.collect.Maps;
 import com.logic.player.dao.PlayerDao;
 import com.logic.player.entity.PlayerActor;
+import javassist.CtClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,16 +17,7 @@ public class ConsoleService implements IConsoleService{
 
     @Console(method = "test",desc = "测试方法1")
     public void test(){
-        System.out.println("hello World");
-        //测试一下入库的操作
-        PlayerActor playerActor = new PlayerActor();
-        playerActor.setPlayerId(1005);
-        playerActor.setAccount("jackie");
-        playerActor.setCopper(101);
-        playerActor.insert();
-        /*if(DBOperation.INSERT.canOperation(AsyncDBState.INSERT)){
-            System.out.println(true);
-        }*/
+
     }
     @Console(method = "test2",desc = "测试方法2")
     public void test2(){
